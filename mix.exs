@@ -37,6 +37,8 @@ defmodule Ccsp.Mixfile do
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
+     {:basic_auth, "~> 2.0.0"},
+     {:guardian, "~> 0.14"},
      {:cowboy, "~> 1.0"}]
   end
 

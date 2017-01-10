@@ -1,0 +1,18 @@
+<h2>Challenge</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @challenge.name %>
+  </li>
+
+  <li>
+    <strong>Content:</strong>
+    <%= @challenge.content %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: admin_challenge_path(@conn, :edit, @challenge) %>
+<%= link "Back", to: admin_challenge_path(@conn, :index) %>

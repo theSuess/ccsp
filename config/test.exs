@@ -17,3 +17,18 @@ config :ccsp, Ccsp.Repo,
   database: "ccsp_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+# Use static values for the test configuration
+config :ccsp, admin_auth: [
+  username: "admin",
+  password: "admin",
+  realm:    "ccsp"
+]
+
+config :guardian, Guardian,
+  issuer: "ccsp",
+  ttl: { 30, :days },
+  allowed_drift: 2000,
+  verify_issuer: true, # optional
+  secret_key: "ccspsecret",
+  serializer: Ccsp.GuardianSerializer

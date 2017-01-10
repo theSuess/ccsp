@@ -52,6 +52,7 @@ defmodule Ccsp.Web do
       import Ccsp.Router.Helpers
       import Ccsp.ErrorHelpers
       import Ccsp.Gettext
+      import Ccsp.ViewHelper
     end
   end
 

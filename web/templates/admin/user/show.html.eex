@@ -1,0 +1,18 @@
+<h2>Show user</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </li>
+
+  <li>
+    <strong>Token:</strong>
+    <%= @user.token %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: admin_user_path(@conn, :edit, @user) %>
+<%= link "Back", to: admin_user_path(@conn, :index) %>

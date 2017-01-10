@@ -1,0 +1,28 @@
+<h2>Listing users</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Token</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for testcase <- @testcases do %>
+    <tr>
+      <td><%= testcase.name %></td>
+      <td><%= testcase.token %></td>
+
+      <td class="text-right">
+        <%= link "Show", to: admin_testcase_path(@conn, :show, testcase), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: admin_testcase_path(@conn, :edit, testcase), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: admin_testcase_path(@conn, :delete, testcase), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New user", to: admin_testcase_path(@conn, :new) %>

@@ -1,0 +1,6 @@
+<h2>Edit testcase</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: admin_testcase_path(@conn, :update, @user) %>
+
+<%= link "Back", to: admin_testcase_path(@conn, :index) %>
