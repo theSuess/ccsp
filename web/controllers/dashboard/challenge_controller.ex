@@ -12,5 +12,4 @@ defmodule Ccsp.Dashboard.ChallengeController do
     challenge = Repo.get!(Challenge, id)
     render(conn, "show.html", challenge: challenge)
   end
-
 end

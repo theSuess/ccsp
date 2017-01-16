@@ -32,3 +32,5 @@ config :guardian, Guardian,
   verify_issuer: true, # optional
   secret_key: "ccspsecret",
   serializer: Ccsp.GuardianSerializer
+
+import_config "test.secret.exs"

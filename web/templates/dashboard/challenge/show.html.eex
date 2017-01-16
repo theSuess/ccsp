@@ -14,40 +14,38 @@
                     <p class="control is-expanded">
                         <span class="select">
             <select id="lang-select">
-                <option>assembly_x86</option>
-                <option>ats</option>
-                <option>bash</option>
-                <option>clojure</option>
-                <option>coffeescript</option>
-                <option>c_cpp</option>
-                <option>crystal</option>
-                <option>csharp</option>
-                <option>d</option>
-                <option>elixir</option>
-                <option>elm</option>
-                <option>erlang</option>
-                <option>fsharp</option>
-                <option>golang</option>
-                <option>groovy</option>
-                <option>haskell</option>
-                <option>idris</option>
-                <option>java</option>
-                <option>javascript</option>
-                <option>julia</option>
-                <option>kotlin</option>
-                <option>lua</option>
-                <option>mercury</option>
-                <option>nim</option>
-                <option>ocaml</option>
-                <option>perl</option>
-                <option>perl6</option>
-                <option>php</option>
-                <option>python</option>
-                <option>ruby</option>
-                <option>rust</option>
-                <option>scala</option>
-                <option>swift</option>
-                <option>typescript</option>
+                <option data-ace="assembly_x86">assembly_x86</option>
+                <option data-ace="bash">bash</option>
+                <option data-ace="clojure">clojure</option>
+                <option data-ace="coffeescript">coffeescript</option>
+                <option data-ace="c_cpp">c_cpp</option>
+                <option data-ace="crystal">crystal</option>
+                <option data-ace="csharp">csharp</option>
+                <option data-ace="d">d</option>
+                <option data-ace="elixir">elixir</option>
+                <option data-ace="erlang">erlang</option>
+                <option data-ace="fsharp">fsharp</option>
+                <option data-ace="golang">go</option>
+                <option data-ace="groovy">groovy</option>
+                <option data-ace="haskell">haskell</option>
+                <option data-ace="idris">idris</option>
+                <option data-ace="java">java</option>
+                <option data-ace="javascript">javascript</option>
+                <option data-ace="julia">julia</option>
+                <option data-ace="kotlin">kotlin</option>
+                <option data-ace="lua">lua</option>
+                <option data-ace="mercury">mercury</option>
+                <option data-ace="nim">nim</option>
+                <option data-ace="ocaml">ocaml</option>
+                <option data-ace="perl">perl</option>
+                <option data-ace="perl6">perl6</option>
+                <option data-ace="php">php</option>
+                <option data-ace="python">python</option>
+                <option data-ace="ruby">ruby</option>
+                <option data-ace="rust">rust</option>
+                <option data-ace="scala">scala</option>
+                <option data-ace="swift">swift</option>
+                <option data-ace="typescript">typescript</option>
             </select>
             </span>
                     </p>
@@ -100,18 +98,17 @@
     </div>
 
     <div class="columns">
-        <div id="code-editor">
-        </div>
+        <div id="code-editor"></div>
     </div>
     <div class="columns">
         <div class="column is-10">
             <label class="label">Input</label>
             <p class="control">
-                <textarea class="textarea" placeholder="Input"></textarea>
+                <textarea id="input" class="textarea" placeholder="Input"></textarea>
             </p>
             <label class="label">Output</label>
             <p class="control">
-                <textarea class="textarea" placeholder="Output will be shown here..."></textarea>
+                <textarea id="output" class="textarea" placeholder="Output will be shown here..."></textarea>
             </p>
         </div>
 

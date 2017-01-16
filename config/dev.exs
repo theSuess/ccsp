@@ -49,6 +49,7 @@ config :ccsp, admin_auth: [
   realm:    "ccsp"
 ]
 
+
 config :guardian, Guardian,
   issuer: "ccsp",
   ttl: { 30, :days },
@@ -56,3 +57,5 @@ config :guardian, Guardian,
   verify_issuer: true, # optional
   secret_key: "ccspsecret",
   serializer: Ccsp.GuardianSerializer
+
+import_config "dev.secret.exs"

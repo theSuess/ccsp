@@ -46,7 +46,8 @@ defmodule Ccsp.Router do
   end
 
   scope "/api", as: :api do
-    pipe_through :api
+    pipe_through [:api]
     resources "/challenges", Ccsp.Api.ChallengeController, only: [:index]
+    post "/run", Ccsp.Api.RunController, :run
   end
 end
