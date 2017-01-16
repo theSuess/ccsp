@@ -1,0 +1,12 @@
+<% info = get_flash(@conn, :info) %>
+<% error = get_flash(@conn, :error) %>
+<%= if info do %>
+    <div class="notification is-primary">
+        <%= info %>
+    </div>
+<% end %>
+<%= if error do %>
+    <div class="notification is-danger">
+        <%= error %>
+    </div>
+<% end %>

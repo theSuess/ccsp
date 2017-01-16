@@ -1,27 +1,30 @@
 <h2>Listing Challenges</h2>
 
 <table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Token</th>
+    <thead>
+        <tr>
+            <th><abbr title="Number">Nr</abbr></th>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <%= for challenge <- @challenges do %>
+            <tr>
+                <td><%= challenge.number %></td>
+                <td><%= challenge.name %></td>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for challenge <- @challenges do %>
-    <tr>
-      <td><%= challenge.name %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: admin_challenge_path(@conn, :show, challenge), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: admin_challenge_path(@conn, :edit, challenge), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: admin_challenge_path(@conn, :delete, challenge), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
+                <td class="has-text-right">
+                    <div class="block">
+                        <%= link "Show", to: admin_challenge_path(@conn, :show, challenge), class: "button is-info is-outlined" %>
+                        <%= link "Edit", to: admin_challenge_path(@conn, :edit, challenge), class: "button is-outlined" %>
+                        <%= link "Testcases", to: admin_challenge_testcase_path(@conn, :index, challenge), class: "button is-outlined" %>
+                        <%= link "Delete", to: admin_challenge_path(@conn, :delete, challenge), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-outlined" %>
+                    </div>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
 </table>
 
-<%= link "New challenge", to: admin_challenge_path(@conn, :new) %>
+<%= link "New challenge", to: admin_challenge_path(@conn, :new), class: "button is-primary" %>

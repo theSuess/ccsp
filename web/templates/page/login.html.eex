@@ -1,0 +1,14 @@
+<%= form_for @conn, session_path(@conn, :create), [as: :session], fn f -> %>
+<label class="label">Name</label>
+<p class="control">
+    <%= text_input f, :name, placeholder: "Name", class: "input" %>
+</p>
+<label class="label">Token</label>
+<p class="control">
+    <%= text_input f, :token, placeholder: "Token",class: "input" %>
+</p>
+<hr>
+<p class="control">
+    <%= submit "Sign in", class: "button is-primary" %>
+</p>
+<% end %>

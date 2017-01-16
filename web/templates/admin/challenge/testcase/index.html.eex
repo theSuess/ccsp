@@ -1,0 +1,27 @@
+<h2>Testcases for challenge <%= @challenge.name %> (#<%= @challenge.number %>)</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for testcase <- @testcases do %>
+    <tr>
+      <td><%= testcase.number %></td>
+
+      <td class="has-text-right">
+          <div class="block">
+            <%= link "Show", to: admin_challenge_testcase_path(@conn, :show, testcase.challenge, testcase), class: "button" %>
+            <%= link "Edit", to: admin_challenge_testcase_path(@conn, :edit, testcase.challenge, testcase), class: "button" %>
+            <%= link "Delete", to: admin_challenge_testcase_path(@conn, :delete, testcase.challenge, testcase), method: :delete, data: [confirm: "Are you sure?"], class: "button" %>
+          </div>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= link "New Testcase", to: admin_challenge_testcase_path(@conn, :new, @challenge) %>

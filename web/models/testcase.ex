@@ -2,6 +2,7 @@ defmodule Ccsp.Testcase do
   use Ccsp.Web, :model
 
   schema "testcases" do
+    field :number, :integer
     field :input, :string
     field :output, :string
     belongs_to :challenge, Ccsp.Challenge
@@ -14,7 +15,14 @@ defmodule Ccsp.Testcase do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:input, :output])
-    |> validate_required([:input, :output])
+    |> cast(params, [:number,:input, :output])
+    |> unique_constraint(:testcases, [:challenge_id,:number])
+    |> validate_required([:number,:input, :output])
+  end
+
+  def ordered(query,id) do
+    from t in query,
+      where: t.challenge_id == ^id,
+      order_by: t.number
   end
 end

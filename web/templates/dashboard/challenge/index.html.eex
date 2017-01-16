@@ -1,0 +1,27 @@
+<h2>Listing Challenges</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><abbr title="Number">Nr.</abbr>
+            <th>Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <%= for challenge <- @challenges do %>
+            <tr>
+                <td>
+                    <%= challenge.number %>
+                </td>
+                <td>
+                    <%= challenge.name %>
+                </td>
+
+                <td class="text-right">
+                    <%= link "Show", to: dashboard_challenge_path(@conn, :show, challenge), class: "btn btn-default btn-xs" %>
+                </td>
+            </tr>
+            <% end %>
+    </tbody>
+</table>

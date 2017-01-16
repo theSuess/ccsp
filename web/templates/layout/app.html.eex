@@ -1,35 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>Hello Ccsp!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-  </head>
-
-  <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <%= render "sign_in_sign_out.html", conn: @conn %><br><br>
-          </ul>
+        <title>CCSP</title>
+        <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css ") %>">
+    </head>
+    <body>
+        <nav class="nav has-shadow" id="top">
+            <div class="container">
+                <div class="nav-left">
+                    <a class="nav-item" href=<%= relhome(@conn) %>>
+                        <img src=<%= static_path(@conn, "/images/logo.png") %> alt="Description">
+                    </a>
+                </div>
+                <span class="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <div class="nav-right nav-menu">
+                    <%= if logged_in?(@conn) do %>
+                        <span class="nav-item">
+                            <%= current_user(@conn).name %>
+                        </span>
+                        <span class="nav-item">
+                            <%= link "Log out", to: session_path(@conn, :delete, :access), method: :delete, class: "button is-danger" %>
+                        </span>
+                    <%= else %>
+                        <span class="nav-item">
+                            Admin
+                        </span>
+                        <span class="nav-item">
+                            <a class="button is-danger" href=<%= page_path(@conn, :index) %>>Return to Platform</a>
+                        </span>
+                    <% end %>
+                </div>
+            </div>
         </nav>
-        <span class="logo"></span>
-      </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-  </body>
+        <section class="section">
+            <div class="container">
+                <%= render "flashes.html", conn: @conn %>
+                <%= render @view_module, @view_template, assigns %>
+            </div>
+        </section>
+        <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    </body>
 </html>

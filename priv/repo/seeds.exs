@@ -12,8 +12,10 @@
 alias Ccsp.Repo
 alias Ccsp.User
 alias Ccsp.Challenge
+alias Ccsp.Testcase
 
 Repo.delete_all User
+Repo.delete_all Testcase
 Repo.delete_all Challenge
 
 Repo.insert! %User{
@@ -26,7 +28,23 @@ Repo.insert! %User{
   token: "foobaz"
 }
 
-Repo.insert! %Challenge{
+challenge = Repo.insert! %Challenge{
+  number: 1,
   name: "Multiply",
-  content: "Multiply the input by two"
+  content: "Multiply the input by *two*"
+}
+
+
+Repo.insert! %Testcase{
+  number: 1,
+  input: "4",
+  output: "8",
+  challenge: challenge
+}
+
+Repo.insert! %Testcase{
+  number: 2,
+  input: "0",
+  output: "0",
+  challenge: challenge
 }

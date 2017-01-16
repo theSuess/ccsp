@@ -7,6 +7,7 @@ defmodule Ccsp.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Guardian.Plug.VerifySession
   end
 
   pipeline :api do
@@ -18,14 +19,13 @@ defmodule Ccsp.Router do
   end
 
   pipeline :browser_auth do
-    plug Guardian.Plug.VerifySession
-    plug Guardian.Plug.EnsureAuthenticated, handler: Todo.Token
+    plug Guardian.Plug.EnsureAuthenticated, handler: Ccsp.Token
     plug Guardian.Plug.LoadResource
   end
 
   scope "/", Ccsp do
     pipe_through :browser # Use the default browser stack
-    resources "/sessions", SessionController, only: [:new,:create,:delete]
+    resources "/sessions", SessionController, only: [:create,:delete]
     get "/", PageController, :index
   end
 
@@ -33,14 +33,16 @@ defmodule Ccsp.Router do
     pipe_through [:browser, :browser_admin]
 
     resources "/users", Ccsp.Admin.UserController
-    resources "/challenges", Ccsp.Admin.ChallengeController
-    resources "/testcases", Ccsp.TestcaseController
+    resources "/challenges", Ccsp.Admin.ChallengeController do
+      resources "/testcases", Ccsp.Admin.Challenge.TestcaseController
+    end
     get "/", Ccsp.PageController, :admin_index
   end
 
   scope "/dashboard", as: :dashboard do
     pipe_through [:browser, :browser_auth]
-    get "/", Ccsp.PageController, :index
+    get "/", Ccsp.PageController, :dashboard_index
+    resources "/challenges", Ccsp.Dashboard.ChallengeController, only: [:index,:show]
   end
 
   scope "/api", as: :api do

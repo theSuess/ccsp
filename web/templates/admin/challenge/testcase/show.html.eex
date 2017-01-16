@@ -1,0 +1,24 @@
+<h2>Testcase </h2>
+
+<h4 class="title is-4">Input</h4>
+<figure class="highlight">
+    <pre>
+    <code>
+        <%= @testcase.input %>
+    </code>
+    </pre>
+</figure>
+<h4 class="title is-4">Output</h4>
+<figure class="highlight">
+    <pre>
+    <code>
+        <%= @testcase.output %>
+    </code>
+    </pre>
+</figure>
+
+<div class="block">
+    <%= link "Edit", to: admin_challenge_testcase_path(@conn, :edit, @testcase.challenge,@testcase), class: "button is-primary is-outlined"%>
+    <a class="button is-danger is-outlined" href="">Delete</a>
+    <%= link "Back", to: admin_challenge_testcase_path(@conn, :index, @testcase.challenge), class: "button is-link" %>
+</div>

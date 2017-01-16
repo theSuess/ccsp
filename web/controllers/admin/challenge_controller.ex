@@ -17,10 +17,10 @@ defmodule Ccsp.Admin.ChallengeController do
     changeset = Challenge.changeset(%Challenge{}, challenge_params)
 
     case Repo.insert(changeset) do
-      {:ok, _user} ->
+      {:ok, challenge} ->
         conn
         |> put_flash(:info, "Challenge created successfully.")
-        |> redirect(to: admin_challenge_path(conn, :index))
+        |> redirect(to: admin_challenge_path(conn, :show, challenge))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -32,9 +32,9 @@ defmodule Ccsp.Admin.ChallengeController do
   end
 
   def edit(conn, %{"id" => id}) do
-    user = Repo.get!(Challenge, id)
-    changeset = User.changeset(user)
-    render(conn, "edit.html", user: user, changeset: changeset)
+    challenge = Repo.get!(Challenge, id)
+    changeset = Challenge.changeset(challenge)
+    render(conn, "edit.html", challenge: challenge, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "challenge" => challenge_params}) do
@@ -42,7 +42,7 @@ defmodule Ccsp.Admin.ChallengeController do
     changeset = Challenge.changeset(challenge, challenge_params)
 
     case Repo.update(changeset) do
-      {:ok, user} ->
+      {:ok, challenge} ->
         conn
         |> put_flash(:info, "Challenge updated successfully.")
         |> redirect(to: admin_challenge_path(conn, :show, challenge))

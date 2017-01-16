@@ -19,3 +19,36 @@ import "phoenix_html";
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+var simplemde;
+var aceeditor;
+if(document.querySelector('#content-editor')){
+    simplemde = new SimpleMDE({element:document.querySelector('#content-editor')});
+}
+if(document.querySelector('#code-editor')){ // Code editor page is shown
+    ace.require("ace/ext/language_tools");
+    aceeditor = ace.edit('code-editor');
+    aceeditor.setFontSize(17);
+    aceeditor.getSession().setMode(`ace/mode/${document.querySelector('#lang-select').value.toLowerCase()}`);
+    aceeditor.setTheme(`ace/theme/${document.querySelector('#theme-select').value.toLowerCase()}`);
+    aceeditor.setOptions({
+        enableBasicAutocompletion: true,
+        enableSnippets: true,
+        enableLiveAutocompletion: true
+    });
+
+    aceeditor.getSession().setMode('ace/mode/csharp');
+    var langselect = document.querySelector('#lang-select');
+    var themeselect = document.querySelector('#theme-select');
+
+    langselect.onchange = () => {
+        aceeditor.getSession().setMode(`ace/mode/${langselect.value.toLowerCase()}`);
+    };
+    themeselect.onchange = () => {
+        aceeditor.setTheme(`ace/theme/${themeselect.value.toLowerCase()}`);
+    };
+    document.querySelector('#run-button').onclick = () => {
+        console.log(langselect.value);
+        console.log(aceeditor.getValue());
+    };
+}

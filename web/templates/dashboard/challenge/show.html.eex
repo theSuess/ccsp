@@ -1,0 +1,128 @@
+<div class="content">
+    <%= markdown(@challenge.content) %>
+</div>
+
+
+<div class="box">
+    <div class="columns">
+        <div class="columns-is-6">
+            <div class="control is-horizontal">
+                <div class="control is-grouped">
+                    <div class="control-label">
+                        <label class="label">Language</label>
+                    </div>
+                    <p class="control is-expanded">
+                        <span class="select">
+            <select id="lang-select">
+                <option>assembly_x86</option>
+                <option>ats</option>
+                <option>bash</option>
+                <option>clojure</option>
+                <option>coffeescript</option>
+                <option>c_cpp</option>
+                <option>crystal</option>
+                <option>csharp</option>
+                <option>d</option>
+                <option>elixir</option>
+                <option>elm</option>
+                <option>erlang</option>
+                <option>fsharp</option>
+                <option>golang</option>
+                <option>groovy</option>
+                <option>haskell</option>
+                <option>idris</option>
+                <option>java</option>
+                <option>javascript</option>
+                <option>julia</option>
+                <option>kotlin</option>
+                <option>lua</option>
+                <option>mercury</option>
+                <option>nim</option>
+                <option>ocaml</option>
+                <option>perl</option>
+                <option>perl6</option>
+                <option>php</option>
+                <option>python</option>
+                <option>ruby</option>
+                <option>rust</option>
+                <option>scala</option>
+                <option>swift</option>
+                <option>typescript</option>
+            </select>
+            </span>
+                    </p>
+                    <div class="control-label">
+                        <label class="label">Theme</label>
+                    </div>
+                    <p class="control is-expanded">
+                        <span class="select">
+                        <select id="theme-select">
+                            <option>github</option>
+                            <option>ambiance</option>
+                            <option>chaos</option>
+                            <option>chrome</option>
+                            <option>clouds</option>
+                            <option>clouds_midnight</option>
+                            <option>cobalt</option>
+                            <option>crimson_editor</option>
+                            <option>dawn</option>
+                            <option>dreamweaver</option>
+                            <option>eclipse</option>
+                            <option>idle_fingers</option>
+                            <option>iplastic</option>
+                            <option>katzenmilch</option>
+                            <option>kr_theme</option>
+                            <option>kuroir</option>
+                            <option>merbivore</option>
+                            <option>merbivore_soft</option>
+                            <option>monokai</option>
+                            <option>mono_industrial</option>
+                            <option>pastel_on_dark</option>
+                            <option>solarized_dark</option>
+                            <option>solarized_light</option>
+                            <option>sqlserver</option>
+                            <option>terminal</option>
+                            <option>textmate</option>
+                            <option>tomorrow</option>
+                            <option>tomorrow_night</option>
+                            <option>tomorrow_night_blue</option>
+                            <option>tomorrow_night_bright</option>
+                            <option>tomorrow_night_eighties</option>
+                            <option>twilight</option>
+                            <option>vibrant_ink</option>
+                            <option>xcode</option>
+                        </select>
+                    </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div id="code-editor">
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column is-10">
+            <label class="label">Input</label>
+            <p class="control">
+                <textarea class="textarea" placeholder="Input"></textarea>
+            </p>
+            <label class="label">Output</label>
+            <p class="control">
+                <textarea class="textarea" placeholder="Output will be shown here..."></textarea>
+            </p>
+        </div>
+
+        <div class="column has-text-right">
+            <button id="run-button" class="button is-primary"><span class="icon is-small"><i class="fa fa-play"></i></span></button>
+            <button id="submit-button" class="button is-success">Submit</button>
+        </div>
+    </div>
+</div>
+<div class="columns">
+    <div class="column">
+        <%= link "Back", to: dashboard_challenge_path(@conn, :index), class: "button is-link" %>
+    </div>
+</div>

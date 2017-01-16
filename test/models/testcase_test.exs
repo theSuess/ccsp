@@ -3,7 +3,7 @@ defmodule Ccsp.TestcaseTest do
 
   alias Ccsp.Testcase
 
-  @valid_attrs %{input: "some content", output: "some content"}
+  @valid_attrs %{number: 42, input: "some content", output: "some content"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

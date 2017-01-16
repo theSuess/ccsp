@@ -39,6 +39,7 @@ defmodule Ccsp.Mixfile do
      {:gettext, "~> 0.11"},
      {:basic_auth, "~> 2.0.0"},
      {:guardian, "~> 0.14"},
+     {:earmark, "~>1.0.0"},
      {:cowboy, "~> 1.0"}]
   end
 

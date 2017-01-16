@@ -1,18 +1,11 @@
 <h2>Challenge</h2>
 
-<ul>
+<div class="content">
+    <%= markdown(@challenge.content) %>
+</div>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @challenge.name %>
-  </li>
-
-  <li>
-    <strong>Content:</strong>
-    <%= @challenge.content %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: admin_challenge_path(@conn, :edit, @challenge) %>
-<%= link "Back", to: admin_challenge_path(@conn, :index) %>
+<div class="block">
+    <%= link "Edit", to: admin_challenge_path(@conn, :edit, @challenge), class: "button is-primary is-outlined"%>
+    <%= link "Delete", to: admin_challenge_path(@conn, :delete, @challenge), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-outlined" %>
+    <%= link "Back", to: admin_challenge_path(@conn, :index), class: "button is-link" %>
+</div>

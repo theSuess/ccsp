@@ -1,1 +1,13 @@
 /* This file is for your main application css. */
+form.link {
+    display:inline;
+}
+
+#code-editor{
+    height:640px;
+    width:100%;
+}
+
+.inline{
+    display:inline-block;
+}
