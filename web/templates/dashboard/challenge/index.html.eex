@@ -20,7 +20,7 @@
                 </td>
 
                 <td class="text-right">
-                    <%= link "Show", to: dashboard_challenge_path(@conn, :show, challenge), class: "button is-primary" %>
+                    <%= link "Show", to: dashboard_challenge_path(@conn, :show, challenge), class: "button is-primary is-outlined" %>
                 </td>
                 <td>
                     <%= if Ccsp.User.has_submitted(current_user(@conn), challenge) do %>

@@ -16,13 +16,15 @@
       <td><%= user.token %></td>
 
       <td class="text-right">
-        <%= link "Show", to: admin_user_path(@conn, :show, user), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: admin_user_path(@conn, :edit, user), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: admin_user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+          <div class="block">
+              <%= link "Show", to: admin_user_path(@conn, :show, user), class: "button is-info is-outlined" %>
+              <%= link "Edit", to: admin_user_path(@conn, :edit, user), class: "button is-outlined" %>
+              <%= link "Delete", to: admin_user_path(@conn, :delete, user), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-outlined" %>
+          </div>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= link "New user", to: admin_user_path(@conn, :new) %>
+<%= link "New user", to: admin_user_path(@conn, :new), class: "button is-primary" %>

@@ -20,6 +20,11 @@ defmodule Ccsp.Challenge do
     |> unique_constraint(:number)
   end
 
+  def ordered(query) do
+    from c in query,
+      order_by: c.number
+  end
+
   defp strip_unsafe_body(model, %{"body" => nil}) do
     model
   end

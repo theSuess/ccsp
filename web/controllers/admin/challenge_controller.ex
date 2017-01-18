@@ -4,7 +4,9 @@ defmodule Ccsp.Admin.ChallengeController do
   alias Ccsp.Challenge
 
   def index(conn, _params) do
-    challenges = Repo.all(Challenge)
+    challenges = Challenge
+    |> Challenge.ordered()
+    |> Repo.all()
     render(conn, :index, challenges: challenges)
   end
 

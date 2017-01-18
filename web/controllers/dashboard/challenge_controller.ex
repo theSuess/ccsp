@@ -9,7 +9,9 @@ defmodule Ccsp.Dashboard.ChallengeController do
   alias Ccsp.Glot.Request
 
   def index(conn, _params) do
-    challenges = Repo.all(Challenge)
+    challenges = Challenge
+    |> Challenge.ordered()
+    |> Repo.all()
     render(conn, "index.html", challenges: challenges)
   end
 
