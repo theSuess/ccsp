@@ -6,4 +6,9 @@ defmodule Ccsp.Api.RunView do
       stderr: response.stderr,
       error: response.error}
   end
+
+  def render("testresult.json", %{correct: cor, incorrect: incor}) do
+    %{correct: cor,
+      incorrect: incor}
+  end
 end

@@ -43,6 +43,8 @@ if (document.querySelector('#code-editor')) { // Code editor page is shown
     var langselect = document.querySelector('#lang-select');
     var themeselect = document.querySelector('#theme-select');
     var runbutton = document.querySelector('#run-button');
+    var testbutton = document.querySelector('#test-button');
+    var submitbutton = document.querySelector('#submit-button');
 
     langselect.onchange = () => {
         var lang = langselect.options[langselect.selectedIndex].dataset.ace;
@@ -60,7 +62,8 @@ if (document.querySelector('#code-editor')) { // Code editor page is shown
             program: {
                 language: lang + '/latest',
                 content: content,
-                extension: getExtension(lang)
+                extension: getExtension(lang),
+                stdin: document.querySelector('#input').value
             }
         };
         fetch('/api/run', {
@@ -79,6 +82,73 @@ if (document.querySelector('#code-editor')) { // Code editor page is shown
                 document.querySelector('#output').value = data.stdout + '\n' + data.stderr;
             });
     };
+    testbutton.onclick = () => {
+        testbutton.classList.toggle('is-loading');
+        runTests(getProgram()).then((data) => {
+            testbutton.classList.toggle('is-loading');
+            console.log(data);
+            document.querySelector('#correct').innerText = data.correct;
+            document.querySelector('#incorrect').innerText = data.incorrect;
+        });
+    };
+    submitbutton.onclick = () => {
+        submitbutton.classList.toggle('is-loading');
+        var program = getProgram();
+        runTests(program).then((data) => {
+            document.querySelector('#correct').innerText = data.correct;
+            document.querySelector('#incorrect').innerText = data.incorrect;
+            if (data.incorrect != 0) {
+                submitbutton.classList.toggle('is-loading');
+                alert('All testcases must be successfull in order to submit');
+                return;
+            }
+            submitProgram(program).done(() => {
+                submitbutton.classList.toggle('is-loading');
+                window.location.replace('/dashboard/challenges');
+            }).fail(() => {
+                submitbutton.classList.toggle('is-loading');
+                alert('All testcases must be successfull in order to submit');
+            });
+        });
+
+    };
+}
+
+function getProgram() {
+    var lang = langselect.value;
+    var content = aceeditor.getValue();
+    return {
+        program: {
+            language: lang + '/latest',
+            content: content,
+            extension: getExtension(lang),
+            stdin: document.querySelector('#input').value
+        }
+    };
+}
+
+function runTests(program) {
+    var cid = document.querySelector('#challenge').dataset.cid;
+    return fetch(`/api/challenges/${cid}/test`, {
+            'method': 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(program)
+        })
+        .then((data) => data.json());
+}
+
+function submitProgram(program) {
+    var cid = document.querySelector('#challenge').dataset.cid;
+    return $.ajax({
+        url:`/dashboard/challenges/${cid}/submit`,
+        type:"POST",
+        data:JSON.stringify(program),
+        contentType:"application/json; charset=utf-8",
+        dataType:"json"
+    });
 }
 
 function getExtension(lang) {

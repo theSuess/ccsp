@@ -5,4 +5,7 @@ defmodule Ccsp.Dashboard.ChallengeView do
       stderr: result.stderr,
       error: result.error}
   end
+  def render("success.json", %{success: success}) do
+    %{success: success}
+  end
 end

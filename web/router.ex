@@ -2,10 +2,10 @@ defmodule Ccsp.Router do
   use Ccsp.Web, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html","json"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
+    # plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug Guardian.Plug.VerifySession
   end
@@ -42,12 +42,16 @@ defmodule Ccsp.Router do
   scope "/dashboard", as: :dashboard do
     pipe_through [:browser, :browser_auth]
     get "/", Ccsp.PageController, :dashboard_index
-    resources "/challenges", Ccsp.Dashboard.ChallengeController, only: [:index,:show]
+    resources "/challenges", Ccsp.Dashboard.ChallengeController, only: [:index,:show] do
+      post "/submit", Ccsp.Dashboard.ChallengeController, :submit
+    end
   end
 
   scope "/api", as: :api do
     pipe_through [:api]
-    resources "/challenges", Ccsp.Api.ChallengeController, only: [:index]
+    resources "/challenges", Ccsp.Api.ChallengeController, only: [:index] do
+      post "/test", Ccsp.Api.RunController, :test
+    end
     post "/run", Ccsp.Api.RunController, :run
   end
 end

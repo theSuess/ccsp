@@ -6,6 +6,7 @@
             <th><abbr title="Number">Nr.</abbr>
             <th>Name</th>
             <th></th>
+            <th>Done?</th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +20,14 @@
                 </td>
 
                 <td class="text-right">
-                    <%= link "Show", to: dashboard_challenge_path(@conn, :show, challenge), class: "btn btn-default btn-xs" %>
+                    <%= link "Show", to: dashboard_challenge_path(@conn, :show, challenge), class: "button is-primary" %>
+                </td>
+                <td>
+                    <%= if Ccsp.User.has_submitted(current_user(@conn), challenge) do %>
+                        <span class="icon"><i class="fa fa-check"></i></span>
+                    <% else %>
+                        <span class="icon"><i class="fa fa-times"></i></span>
+                    <% end %>
                 </td>
             </tr>
             <% end %>

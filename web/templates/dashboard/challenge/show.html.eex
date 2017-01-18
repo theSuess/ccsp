@@ -1,4 +1,4 @@
-<div class="content">
+<div id="challenge" data-cid=<%= @challenge.id %> class="content">
     <%= markdown(@challenge.content) %>
 </div>
 
@@ -112,9 +112,26 @@
             </p>
         </div>
 
-        <div class="column has-text-right">
-            <button id="run-button" class="button is-primary"><span class="icon is-small"><i class="fa fa-play"></i></span></button>
-            <button id="submit-button" class="button is-success">Submit</button>
+        <div class="column">
+            <div class="has-text-right">
+                <button id="run-button" class="button is-primary"><span class="icon is-small"><i class="fa fa-play"></i></span></button>
+                <button id="test-button" class="button is-success">Test</button>
+            </div>
+            <div>
+                <table class="table">
+                    <tr>
+                        <th>Correct</th>
+                        <td id="correct">0</td>
+                    </tr>
+                    <tr>
+                        <th>Incorrect</th>
+                        <td id="incorrect">0</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="has-text-right">
+                <button id="submit-button" class="button is-success">Submit!</button>
+            </div>
         </div>
     </div>
 </div>
