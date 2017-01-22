@@ -32,6 +32,7 @@ defmodule Ccsp.Router do
   scope "/admin", as: :admin do
     pipe_through [:browser, :browser_admin]
 
+    get "/leaderboard", Ccsp.AdminController, :leaderboard
     resources "/users", Ccsp.Admin.UserController
     resources "/challenges", Ccsp.Admin.ChallengeController do
       resources "/testcases", Ccsp.Admin.Challenge.TestcaseController

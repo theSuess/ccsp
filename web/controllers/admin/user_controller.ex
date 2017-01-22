@@ -62,4 +62,5 @@ defmodule Ccsp.Admin.UserController do
     |> put_flash(:info, "User deleted successfully.")
     |> redirect(to: admin_user_path(conn, :index))
   end
+
 end

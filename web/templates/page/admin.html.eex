@@ -5,6 +5,7 @@
         <aside class="menu">
             <p class="menu-label">Resources</p>
             <ul class="menu-list">
+                <li><a href=<%= admin_admin_path(@conn, :leaderboard) %>>Leaderboard</a></li>
                 <li><a href=<%= admin_user_path(@conn, :index) %>>Users</a></li>
                 <li><a href=<%= admin_challenge_path(@conn, :index) %>>Challenges</a></li>
             </ul>

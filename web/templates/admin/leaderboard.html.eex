@@ -1,0 +1,18 @@
+<h2 class="title is-2">Leaderboard</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for entry <- @board do %>
+    <tr>
+      <td><%= entry.name %></td>
+      <td><%= entry.sum %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
