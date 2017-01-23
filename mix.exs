@@ -19,7 +19,7 @@ defmodule Ccsp.Mixfile do
   def application do
     [mod: {Ccsp, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex,:httpoison]]
+                    :phoenix_ecto, :postgrex, :httpoison, :guardian, :earmark, :basic_auth]]
   end
 
   # Specifies which paths to compile per environment.
@@ -41,6 +41,7 @@ defmodule Ccsp.Mixfile do
      {:guardian, "~> 0.14"},
      {:earmark, "~>1.0.0"},
      {:httpoison, "~> 0.11.0"},
+     {:exrm, "~> 1.0"},
      {:cowboy, "~> 1.0"}]
   end
 
