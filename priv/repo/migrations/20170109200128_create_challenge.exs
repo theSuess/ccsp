@@ -5,7 +5,7 @@ defmodule Ccsp.Repo.Migrations.CreateChallenge do
     create table(:challenges) do
       add :number, :integer
       add :name, :string
-      add :content, :string
+      add :content, :text
 
       timestamps()
     end

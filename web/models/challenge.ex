@@ -15,7 +15,7 @@ defmodule Ccsp.Challenge do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:number,:name, :content])
+    |> cast(params, [:number, :name, :content])
     |> validate_required([:number,:name, :content])
     |> unique_constraint(:number)
   end
