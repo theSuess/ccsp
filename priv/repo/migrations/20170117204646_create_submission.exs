@@ -3,7 +3,7 @@ defmodule Ccsp.Repo.Migrations.CreateSubmission do
 
   def change do
     create table(:submissions) do
-      add :code, :string
+      add :code, :text
       add :language, :string
       add :filename, :string
       add :challenge_id, references(:challenges, on_delete: :delete_all)

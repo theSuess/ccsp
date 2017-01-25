@@ -4,8 +4,8 @@ defmodule Ccsp.Repo.Migrations.CreateTestcase do
   def change do
     create table(:testcases) do
       add :number, :integer
-      add :input, :string
-      add :output, :string
+      add :input, :text
+      add :output, :text
       add :challenge_id, references(:challenges, on_delete: :delete_all)
 
       timestamps()
