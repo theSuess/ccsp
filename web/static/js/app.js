@@ -24,6 +24,7 @@ var simplemde;
 var aceeditor;
 if (document.querySelector('#content-editor')) {
     simplemde = new SimpleMDE({
+        spellChecker: false,
         element: document.querySelector('#content-editor')
     });
 }
