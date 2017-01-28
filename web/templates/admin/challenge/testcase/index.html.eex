@@ -24,4 +24,4 @@
   </tbody>
 </table>
 
-<%= link "New Testcase", to: admin_challenge_testcase_path(@conn, :new, @challenge) %>
+<%= link "New Testcase", to: admin_challenge_testcase_path(@conn, :new, @challenge), class: "button is-primary" %>

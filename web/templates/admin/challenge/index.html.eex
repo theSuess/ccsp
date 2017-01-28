@@ -1,4 +1,4 @@
-<h2>Listing Challenges</h2>
+<h2 class="title">Listing Challenges</h2>
 
 <table class="table">
     <thead>
