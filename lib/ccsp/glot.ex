@@ -1,5 +1,6 @@
 defmodule Ccsp.Glot do
   use HTTPoison.Base
+  require Logger
   alias Ccsp.Repo
   alias Ccsp.Testcase
 
@@ -25,7 +26,9 @@ defmodule Ccsp.Glot do
 
   def runtestcase(language,program,input,output) do
     prg = %{program | :stdin => input}
-    String.trim(runprogramm(language,prg).body.stdout) == String.trim(output)
+    out = runprogramm(language,prg).body.stdout |> String.replace("\r\n","\n")
+    should = String.replace(output,"\r\n","\n")
+    String.trim(out) == String.trim(should)
   end
 
   def runtestcases(language,program,id) do
